@@ -1,4 +1,4 @@
-package org.Astatine.r10.command.UserCommand.Announce;
+package org.Astatine.r10.Command.UserCommand.Announce;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;

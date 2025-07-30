@@ -37,10 +37,10 @@ public class DualWieldSwingMotionService implements EventRegister {
         if (ObjectUtils.notEqual(this.event.getAnimationType(), PlayerAnimationType.OFF_ARM_SWING))
             return;
 
-        Bukkit.getGlobalRegionScheduler().runDelayed(
-            R10.getPlugin(R10.class),
-            (task) -> this.event.getPlayer().swingOffHand(),
-            7L
+        Bukkit.getScheduler().runTaskLater(
+                R10.getPlugin(R10.class),
+                () -> this.event.getPlayer().swingOffHand(),
+                7L
         );
     }
 }

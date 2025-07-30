@@ -4,9 +4,9 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
+import org.Astatine.r10.Command.CommandRegister;
+import org.Astatine.r10.Command.GlobalCommandHandler;
 import org.Astatine.r10.Contents.UserInterface.GSit.GSitUI;
-import org.Astatine.r10.command.CommandRegister;
-import org.Astatine.r10.command.GlobalCommandHandler;
 
 public class GSitTabOpen extends CommandRegister {
 

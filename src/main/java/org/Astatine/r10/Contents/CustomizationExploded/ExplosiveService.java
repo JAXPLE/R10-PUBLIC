@@ -25,14 +25,6 @@ public class ExplosiveService implements EventRegister {
 
     @Override
     public void execute() {
-//        TNT: 4 blocks
-//        Creeper:
-//        isNormal -> 3 blocks
-//        isCharged -< 6 blocks
-//        Ghast Fireball: 1 block
-//        Wither Skull:
-//        isBlueSkull -> 1 block
-//        isBlackSkull -> Varies depending on difficulty
         switch (this.event.getEntityType()) {
             case CREEPER -> creeperBoom();
             case FIREBALL -> ghastBoom();
@@ -73,9 +65,8 @@ public class ExplosiveService implements EventRegister {
     }
 
     private void taskExecute(int explosiveRadius) {
-        Bukkit.getGlobalRegionScheduler().execute(
-                R10.getPlugin(R10.class),
-                () -> this.location.createExplosion(explosiveRadius, true)
-        );
+        Bukkit.getScheduler().runTask(R10.getPlugin(R10.class), () -> {
+            this.location.createExplosion(explosiveRadius, true);
+        });
     }
 }

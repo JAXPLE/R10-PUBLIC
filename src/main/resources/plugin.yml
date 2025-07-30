@@ -1,10 +1,9 @@
 name: R10
 version: '1.0.0'
 main: org.Astatine.r10.R10
-api-version: '1.21.6'
+api-version: '1.21.4'
 authors: [JAXPLE]
 website: https://jaxple.notion.site/Astn-kr-e000a5d52aaa4611a63fd62629ea0f36?pvs=4
-folia-supported: true
 
 permissions:
   SpeedLimit.bypass:

@@ -52,8 +52,6 @@ import org.Astatine.r10.Contents.Restricted.Function.TotemStack.RestrictedStacki
 import org.Astatine.r10.Contents.Restricted.Function.TotemStack.RestrictedStackingTotemInteractionShulkerChestHandler;
 import org.Astatine.r10.Contents.UserInterface.Command.MainMenu.MainMenuTabKeyHandler;
 import org.Astatine.r10.Contents.UserInterface.Core.UIEventSwitcherHandler;
-import org.Astatine.r10.R10;
-import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -101,13 +99,6 @@ import io.papermc.paper.event.player.PlayerOpenSignEvent;
  */
 public class GlobalEventHandler implements Listener {
 
-    private void schedule(Runnable task) {
-        Bukkit.getGlobalRegionScheduler().execute(
-                R10.getPlugin(R10.class),
-                task
-        );
-    }
-
     @EventHandler(priority = EventPriority.LOWEST)
     public void BlockRedstoneEvent(BlockRedstoneEvent event) {
 //        methodImplement
@@ -125,176 +116,151 @@ public class GlobalEventHandler implements Listener {
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void PlayerJoinEvent(PlayerJoinEvent event) {
-        schedule(() -> {
-            new JoiningUserConfigurationValueService(event);
-            new JoiningPlayerConfigurationStatusService(event);
-            new JoinMessageService(event);
-            new PlayerFlightService(event);
-        });
+        new JoiningUserConfigurationValueService(event);
+        new JoiningPlayerConfigurationStatusService(event);
+        new JoinMessageService(event);
+        new PlayerFlightService(event);
 
     }
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void PlayerQuitEvent(PlayerQuitEvent event) {
-        schedule(() -> {
-            new QuitUserConfigurationValueService(event);
-            new QuitMessageService(event);
-        });
+        new QuitUserConfigurationValueService(event);
+        new QuitMessageService(event);
     }
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void RaidTriggerEvent(RaidTriggerEvent event) {
 //        todo 반야생변경에 따른 콘텐츠 수정
-        schedule(() -> {
-            new RaidAnnouncementService(event);
-        });
+        new RaidAnnouncementService(event);
     }
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void PlayerDeathEvent(PlayerDeathEvent event) {
-        schedule(() -> {
-            new LifeSteelEvent(event);
-            new RegistBindItemHandler(event);
-            new IncrementKillerKillCountService(event);
-            new DeadPlayerHeadDropService(event);
-        });
+        new LifeSteelEvent(event);
+        new RegistBindItemHandler(event);
+        new IncrementKillerKillCountService(event);
+        new DeadPlayerHeadDropService(event);
     }
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void EntityDeathEvent(EntityDeathEvent event) {
-        schedule(() -> new BossRewardService(event));
+        new BossRewardService(event);
     }
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void EnchantItemEvent(EnchantItemEvent event) {
-        schedule(() -> new UpdateEnhanceItemLoreFromEnchantment(event));
+        new UpdateEnhanceItemLoreFromEnchantment(event);
     }
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void PrepareAnvilEvent(PrepareAnvilEvent event) {
-        schedule(() -> new UpdateEnhanceItemPrepareAnvil(event));
+        new UpdateEnhanceItemPrepareAnvil(event);
     }
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void PrepareGrindstoneEvent(PrepareGrindstoneEvent event) {
-        schedule(() -> new UpdateEnhanceItemPrepareGrindstone(event));
+        new UpdateEnhanceItemPrepareGrindstone(event);
     }
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void ProjectileHitEvent(ProjectileHitEvent event) {
-        schedule(() -> {
-            new EnhanceBowHitEvent(event);
-            new EnhanceCrossBowHitEvent(event);
-            new EnhanceTridentHitEvent(event);
-            new GodModeTridentHitEvent(event);
-        });
+        new EnhanceBowHitEvent(event);
+        new EnhanceCrossBowHitEvent(event);
+        new EnhanceTridentHitEvent(event);
+        new GodModeTridentHitEvent(event);
     }
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void ProjectileLaunchEvent(ProjectileLaunchEvent event) {
-        schedule(() -> {
-            new EnhanceBowShotEvent(event);
-            new EnhanceCrossBowShotEvent(event);
-            new EnhanceTridentShotEvent(event);
-            new GodModeTridentShotEvent(event);
-        });
+        new EnhanceBowShotEvent(event);
+        new EnhanceCrossBowShotEvent(event);
+        new EnhanceTridentShotEvent(event);
+        new GodModeTridentShotEvent(event);
     }
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void PlayerRespawnEvent(PlayerRespawnEvent event) {
-        schedule(() -> {
-            new BindItemRestoreService(event);
-            new RespawnMessageService(event);
-            new PlayerFlightService(event);
-            new RespawnRandomTeleportService(event);
-        });
+        new BindItemRestoreService(event);
+        new RespawnMessageService(event);
+        new PlayerFlightService(event);
+        new RespawnRandomTeleportService(event);
     }
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void InventoryClickEvent(InventoryClickEvent event) {
 
-        schedule(() -> {
-
 //        Restriction
-            new RestrictedDispenserItemClickHandler(event);
-            new RestrictedStackingTotemClickHandler(event);
-            new RestrictedStackingTotemInteractionShulkerChestHandler(event);
+        new RestrictedDispenserItemClickHandler(event);
+        new RestrictedStackingTotemClickHandler(event);
+        new RestrictedStackingTotemInteractionShulkerChestHandler(event);
 
 //        Enhance Prepare
-            new UpdateEnhanceResultItemLoreFromAnvil(event);
-            new UpdateEnhanceResultItemLoreFromGrindStone(event);
+        new UpdateEnhanceResultItemLoreFromAnvil(event);
+        new UpdateEnhanceResultItemLoreFromGrindStone(event);
 
 //        User Interface
-            new UIEventSwitcherHandler(event);
-        });
+        new UIEventSwitcherHandler(event);
     }
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void InventoryCloseEvent(InventoryCloseEvent event) {
 //        User Interface
-        schedule(() -> {
-//        User Interface
-            new UIEventSwitcherHandler(event);
-        });
+        new UIEventSwitcherHandler(event);
     }
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void onPlayerEditSign(PlayerOpenSignEvent event) {
-        schedule(() -> new RestrictedSignHandler(event));
+        new RestrictedSignHandler(event);
     }
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void SignChangeEvent(SignChangeEvent event) {
-        schedule(() -> new RestrictedSignChangeHandler(event));
+        new RestrictedSignChangeHandler(event);
     }
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void InventoryMoveItemEvent(InventoryMoveItemEvent event) {
-        schedule(() -> new RestrictedDispenserInventoryMoveItemHandler(event));
+        new RestrictedDispenserInventoryMoveItemHandler(event);
     }
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void PlayerItemDamageEvent(PlayerItemDamageEvent event) {
-        schedule(() -> new PreventMaceDamageHandler(event));
+        new PreventMaceDamageHandler(event);
     }
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void EntityExplodeEvent(EntityExplodeEvent event) {
-        schedule(() -> new ExplosiveService(event));
+        new ExplosiveService(event);
     }
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void PlayerArmSwingEvent(PlayerArmSwingEvent event) {
-        schedule(() -> new DualWieldSwingMotionService(event));
+        new DualWieldSwingMotionService(event);
     }
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void EntityDamageEvent(EntityDamageEvent event) {
 //        Event Cancelled 하면 해당 Event 자체가 캔슬됌.
-        schedule(() -> {
-//        Event Cancelled 하면 해당 Event 자체가 캔슬됌.
-            new EnhanceArmourResistanceHandler(event);
-            new RestrictedExplosiveDamageHandler(event);
-        });
+        new EnhanceArmourResistanceHandler(event);
+        new RestrictedExplosiveDamageHandler(event);
     }
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void PlayerInteractEvent(PlayerInteractEvent event) {
-        schedule(() -> {
-            new ResetHitDelayHandler(event);
-            new LeverInteractionHandler(event);
-            new RestrictedItemInteractHandler(event);
-        });
+        new ResetHitDelayHandler(event);
+        new LeverInteractionHandler(event);
+        new RestrictedItemInteractHandler(event);
     }
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void EntityPortalEvent(EntityPortalEvent event) {
-        schedule(() -> new RestrictedPortalEntryHandler(event));
+        new RestrictedPortalEntryHandler(event);
     }
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void BlockPistonExtendEvent(BlockPistonExtendEvent event) {
-        schedule(() -> new RestrictedPistonInteractionHandler(event));
+        new RestrictedPistonInteractionHandler(event);
     }
 
     @EventHandler(priority = EventPriority.LOWEST)
@@ -305,36 +271,30 @@ public class GlobalEventHandler implements Listener {
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void PlayerCommandPreprocessEvent(PlayerCommandPreprocessEvent event) {
-        schedule(() -> {
-            new RestrictedCommandInInventoryHandler(event);
-            new RestrictedCommandHandler(event);
-        });
+        new RestrictedCommandInInventoryHandler(event);
+        new RestrictedCommandHandler(event);
     }
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void AsyncChatEvent(AsyncChatEvent event) {
-        schedule(() -> {
-            new RestrictedChatHandler(event);
-            new CompanyPrefix(event);
-        });
+        new RestrictedChatHandler(event);
+        new CompanyPrefix(event);
     }
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void PlayerSwapHandItemsEvent(PlayerSwapHandItemsEvent event) {
-        schedule(() -> new MainMenuTabKeyHandler(event));
+        new MainMenuTabKeyHandler(event);
     }
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void PlayerChangedWorldEvent(PlayerChangedWorldEvent event) {
-        schedule(() -> new PlayerFlightService(event));
+        new PlayerFlightService(event);
     }
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void EntityDamageByEntityEvent(EntityDamageByEntityEvent event) {
-        schedule(() -> {
-            new EntityHitDelayHandler(event);
-            new EnhanceShortRangeHitEvent(event);
-        });
+        new EntityHitDelayHandler(event);
+        new EnhanceShortRangeHitEvent(event);
     }
 
     @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)

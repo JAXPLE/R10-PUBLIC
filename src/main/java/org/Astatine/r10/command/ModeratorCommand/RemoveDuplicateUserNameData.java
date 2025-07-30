@@ -1,17 +1,17 @@
-package org.Astatine.r10.command.ModeratorCommand;
+package org.Astatine.r10.Command.ModeratorCommand;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
+import org.Astatine.r10.Command.CommandRegister;
+import org.Astatine.r10.Command.GlobalCommandHandler;
 import org.Astatine.r10.Data.DataIO.User.DataFile;
 import org.Astatine.r10.Data.DataIO.User.RObjectIOHandler;
 import org.Astatine.r10.Data.User.UserData.User;
 import org.Astatine.r10.Data.User.UserData.UserHandler;
 import org.Astatine.r10.Enumeration.Type.ColorType;
-import org.Astatine.r10.command.CommandRegister;
-import org.Astatine.r10.command.GlobalCommandHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;

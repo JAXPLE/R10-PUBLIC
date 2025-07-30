@@ -1,9 +1,9 @@
-package org.Astatine.r10.command.Company.UserCommand;
+package org.Astatine.r10.Command.Company.UserCommand;
 
+import org.Astatine.r10.Command.CommandRegister;
+import org.Astatine.r10.Command.GlobalCommandHandler;
 import org.Astatine.r10.Data.Company.CompanyData.Company.Company;
 import org.Astatine.r10.Data.Company.CompanyData.Company.CompanyController;
-import org.Astatine.r10.command.CommandRegister;
-import org.Astatine.r10.command.GlobalCommandHandler;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;

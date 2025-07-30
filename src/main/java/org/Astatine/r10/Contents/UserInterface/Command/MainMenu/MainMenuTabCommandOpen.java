@@ -1,8 +1,8 @@
 package org.Astatine.r10.Contents.UserInterface.Command.MainMenu;
 
+import org.Astatine.r10.Command.CommandRegister;
+import org.Astatine.r10.Command.GlobalCommandHandler;
 import org.Astatine.r10.Contents.UserInterface.Menu.MainMenuUI;
-import org.Astatine.r10.command.CommandRegister;
-import org.Astatine.r10.command.GlobalCommandHandler;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;

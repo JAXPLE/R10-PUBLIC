@@ -74,7 +74,7 @@ public class Announcer extends StringComponentExchanger {
                 players.forEach(player -> {
                     User user = new UserHandler().readUser(player.getUniqueId());
                     if (user.announcingSkip())
-                        Bukkit.getGlobalRegionScheduler().execute(
+                        Bukkit.getScheduler().runTask(
                                 R10.getPlugin(R10.class),
                                 ()-> {
                                     player.performCommand("help");

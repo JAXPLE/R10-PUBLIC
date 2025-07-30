@@ -1,9 +1,9 @@
 package org.Astatine.r10.Contents.UserInterface.Menu;
 
+import org.Astatine.r10.Command.GlobalCommandHandler;
 import org.Astatine.r10.Contents.EventRegister;
 import org.Astatine.r10.Contents.UserInterface.Core.UIUtils;
 import org.Astatine.r10.Contents.UserInterface.Core.Interface.UIHolder;
-import org.Astatine.r10.command.GlobalCommandHandler;
 import org.apache.commons.lang3.ObjectUtils;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;

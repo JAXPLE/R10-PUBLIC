@@ -3,6 +3,7 @@ package org.Astatine.r10.Contents.PlayerInteraction.PlayerStatus.PlayerJoinEvent
 import java.util.Arrays;
 import java.util.Optional;
 
+import org.Astatine.r10.Command.ModeratorCommand.SetGodMode;
 import org.Astatine.r10.Contents.EventRegister;
 import org.Astatine.r10.Contents.RandomTeleport.RandomPositionGenerator;
 import org.Astatine.r10.Data.User.UserData.User;
@@ -14,7 +15,6 @@ import org.Astatine.r10.Enumeration.Kit.FoodKit;
 import org.Astatine.r10.Enumeration.Kit.ToolKit;
 import org.Astatine.r10.Enumeration.Type.WorldType;
 import org.Astatine.r10.Util.Function.StringComponentExchanger;
-import org.Astatine.r10.command.ModeratorCommand.SetGodMode;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;

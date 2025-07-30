@@ -1,12 +1,12 @@
-package org.Astatine.r10.command.ModeratorCommand;
+package org.Astatine.r10.Command.ModeratorCommand;
 
 import java.util.Map;
 
+import org.Astatine.r10.Command.CommandRegister;
+import org.Astatine.r10.Command.GlobalCommandHandler;
 import org.Astatine.r10.Contents.Enhance.Enumeration.EnhanceItemAttributes;
 import org.Astatine.r10.Contents.Enhance.Processor.EnhanceUtil;
 import org.Astatine.r10.Enumeration.Type.ColorType;
-import org.Astatine.r10.command.CommandRegister;
-import org.Astatine.r10.command.GlobalCommandHandler;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.enchantments.Enchantment;

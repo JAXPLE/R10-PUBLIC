@@ -1,7 +1,7 @@
 package org.Astatine.r10.Contents.UserInterface.Command.MainMenu;
 
+import org.Astatine.r10.Command.GlobalCommandHandler;
 import org.Astatine.r10.Contents.EventRegister;
-import org.Astatine.r10.command.GlobalCommandHandler;
 import org.apache.commons.lang3.BooleanUtils;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerSwapHandItemsEvent;

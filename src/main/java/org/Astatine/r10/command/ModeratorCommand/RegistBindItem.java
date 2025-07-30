@@ -1,13 +1,13 @@
-package org.Astatine.r10.command.ModeratorCommand;
+package org.Astatine.r10.Command.ModeratorCommand;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import org.Astatine.r10.R10;
+import org.Astatine.r10.Command.CommandRegister;
+import org.Astatine.r10.Command.GlobalCommandHandler;
 import org.Astatine.r10.Enumeration.Type.ColorType;
-import org.Astatine.r10.command.CommandRegister;
-import org.Astatine.r10.command.GlobalCommandHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 import org.bukkit.command.Command;

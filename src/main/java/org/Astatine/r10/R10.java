@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.EnumSet;
 
+import org.Astatine.r10.Command.GlobalCommandHandler;
+import org.Astatine.r10.Command.ModeratorCommand.ReloadConfigData;
 import org.Astatine.r10.Contents.GlobalEventHandler;
 import org.Astatine.r10.Contents.PlayerInteraction.Announce.Tip.Announcer;
 import org.Astatine.r10.Data.Company.CompanyData.Company.Company;
@@ -19,8 +21,6 @@ import org.Astatine.r10.Data.User.UserData.UserHandler;
 import org.Astatine.r10.Data.User.UserKillStatus.UserKillStatus;
 import org.Astatine.r10.Data.User.UserKillStatus.UserKillStatusHandler;
 import org.Astatine.r10.Util.Function.AsyncTaskRunner;
-import org.Astatine.r10.command.GlobalCommandHandler;
-import org.Astatine.r10.command.ModeratorCommand.ReloadConfigData;
 import org.apache.commons.lang3.BooleanUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -65,7 +65,7 @@ public final class R10 extends JavaPlugin {
         );
 
         AsyncTaskRunner.getThreadPool().allServiceOff();
-        Bukkit.getGlobalRegionScheduler().cancelTasks(this);
+        Bukkit.getScheduler().cancelTasks(this);
     }
 
     /**

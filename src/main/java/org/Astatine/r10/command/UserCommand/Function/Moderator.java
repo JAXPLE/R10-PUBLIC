@@ -1,9 +1,9 @@
-package org.Astatine.r10.command.UserCommand.Function;
+package org.Astatine.r10.Command.UserCommand.Function;
 
+import org.Astatine.r10.Command.CommandRegister;
+import org.Astatine.r10.Command.GlobalCommandHandler;
 import org.Astatine.r10.Enumeration.Type.ColorType;
 import org.Astatine.r10.Util.Function.Emoji;
-import org.Astatine.r10.command.CommandRegister;
-import org.Astatine.r10.command.GlobalCommandHandler;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;

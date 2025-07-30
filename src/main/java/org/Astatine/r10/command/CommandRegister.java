@@ -1,4 +1,4 @@
-package org.Astatine.r10.command;
+package org.Astatine.r10.Command;
 
 import org.Astatine.r10.Util.Function.StringComponentExchanger;
 import org.bukkit.command.CommandExecutor;

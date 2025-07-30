@@ -53,6 +53,16 @@ public class EntityHitDelayHandler implements EventRegister {
         if (stuffCheck) //Two Hand Sword
             hurtTick = 1;
 
+//        Bukkit.getScheduler().runTaskLater(R10.getPlugin(R10.class),
+//                () -> targetEntity.setVelocity(targetEntity.getVelocity().multiply(hitDelay)), 1);
+
+//        final int tick = hurtTick;
+//        Bukkit.getScheduler().runTaskLater(
+//                R10.getPlugin(R10.class),
+//                () -> this.targetEntity.setMaximumNoDamageTicks(tick),
+//                0
+//        );
+
         this.targetEntity.setMaximumNoDamageTicks(hurtTick);
     }
 

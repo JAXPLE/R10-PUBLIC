@@ -1,4 +1,4 @@
-package org.Astatine.r10.command.UserCommand.Announce;
+package org.Astatine.r10.Command.UserCommand.Announce;
 
 
 import org.Astatine.r10.Data.DataIO.Config.ConfigIOHandler;

@@ -1,14 +1,14 @@
-package org.Astatine.r10.command.UserCommand.Function;
+package org.Astatine.r10.Command.UserCommand.Function;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+import org.Astatine.r10.Command.CommandRegister;
+import org.Astatine.r10.Command.GlobalCommandHandler;
 import org.Astatine.r10.Enumeration.Type.ColorType;
 import org.Astatine.r10.Util.Function.Emoji;
-import org.Astatine.r10.command.CommandRegister;
-import org.Astatine.r10.command.GlobalCommandHandler;
 import org.apache.commons.lang3.BooleanUtils;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
