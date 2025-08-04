@@ -20,11 +20,9 @@ import org.Astatine.r10.Util.Function.Emoji;
 import org.Astatine.r10.Util.Function.StringComponentExchanger;
 
 public class EnhanceItemExecutor extends StringComponentExchanger {
-    private static final int LOW_LEVEL = 0;
-    private static final int MAX_LEVEL = 10;
-    
-    private final int MSG_IS_WEAPON_NULL = 0;
-    private final int MSG_IS_SCROLL_NULL = 1;
+
+    private final int MSG_NO_WEAPON = 0;
+    private final int MSG_NO_SCROLL = 1;
     private final int MSG_MAX_LEVEL = 2;
     private final int MSG_ITEM_DESTROYED = 3;
     private final int MSG_PROTECT_SUCCESS = 4;
@@ -91,27 +89,26 @@ public class EnhanceItemExecutor extends StringComponentExchanger {
 
     private boolean isValidEnhanceItem() {
         if (ObjectUtils.isEmpty(item.enhanceItem())) {
-            sendMessage(MSG_IS_WEAPON_NULL);
+            sendMessage(MSG_NO_WEAPON);
             return false;
         }
 
         if (ObjectUtils.isEmpty(item.enhanceScroll())) {
-            sendMessage(MSG_IS_SCROLL_NULL);
+            sendMessage(MSG_NO_SCROLL);
             return false;
         }
 
-        if (BooleanUtils.isFalse(allowedItems.contains(item.enhanceItem().getType()))) {
+        if (!allowedItems.contains(item.enhanceItem().getType())) {
             sendMessage(MSG_INVALID_ITEM);
             return false;
         }
 
-        if (BooleanUtils.isFalse(allowedScrolls.contains(item.enhanceScroll().getType()))) {
+        if (!allowedScrolls.contains(item.enhanceScroll().getType())) {
             sendMessage(MSG_INVALID_SCROLL);
             return false;
         }
 
-        if (hasProtectScroll 
-            && BooleanUtils.isFalse(allowedScrolls.contains(item.protectScroll().getType()))) {
+        if (hasProtectScroll && !allowedScrolls.contains(item.protectScroll().getType())) {
             sendMessage(MSG_INVALID_PROTECT_SCROLL);
             return false;
         }
@@ -135,7 +132,7 @@ public class EnhanceItemExecutor extends StringComponentExchanger {
 
     private boolean isMaxLevelReached() {
         int currentLevel = getCurrentEnhanceLevel();
-        if (currentLevel >= MAX_LEVEL) {
+        if (currentLevel >= EnhanceUtil.MAX_LEVEL) {
             sendMessage(MSG_MAX_LEVEL);
             return true;
         }
@@ -143,12 +140,12 @@ public class EnhanceItemExecutor extends StringComponentExchanger {
     }
 
     private boolean areScrollsSufficient() {
-        if (BooleanUtils.isFalse(isScrollSufficient)) {
+        if (!isScrollSufficient) {
             sendMessage(MSG_SCROLL_INSUFFICIENT);
             return false;
         }
 
-        if (hasProtectScroll && BooleanUtils.isFalse(isProtectScrollSufficient)) {
+        if (hasProtectScroll && !isProtectScrollSufficient) {
             sendMessage(MSG_PROTECT_INSUFFICIENT);
             return false;
         }
@@ -158,14 +155,14 @@ public class EnhanceItemExecutor extends StringComponentExchanger {
 
     private void processEnhancement() {
         int currentLevel = getCurrentEnhanceLevel();
-        boolean isSuccessful = EnhanceUtil.isMeetsJudgementCriteria(MAX_LEVEL - currentLevel);
-        boolean willDestroy = EnhanceUtil.isMeetsJudgementCriteria(currentLevel - LOW_LEVEL);
+        boolean isSuccessful = EnhanceUtil.isMeetsJudgementCriteria(EnhanceUtil.MAX_LEVEL - currentLevel);
+        boolean willDestroy = EnhanceUtil.isMeetsJudgementCriteria(currentLevel - EnhanceUtil.LOW_LEVEL);
 
         if (isSuccessful) {
             handleSuccess();
-        } else if (BooleanUtils.isFalse(willDestroy)) {
+        } else if (!willDestroy) {
             handleFailure();
-        } else if (BooleanUtils.isFalse(hasProtectScroll)) {
+        } else if (!hasProtectScroll) {
             handleDestruction();
         } else {
             handleProtectedFailure();
@@ -220,8 +217,8 @@ public class EnhanceItemExecutor extends StringComponentExchanger {
 
     private PlayerComment createPlayerComment(int messageCode, int currentLevel) {
         return switch (messageCode) {
-            case MSG_IS_WEAPON_NULL -> new PlayerComment(Emoji.WARNING, "무기를 올려주세요..!", ColorType.WHITE_TO_RED7);
-            case MSG_IS_SCROLL_NULL -> new PlayerComment(Emoji.WARNING, "강화 주문서가 부족해요..", ColorType.WHITE_TO_RED7);
+            case MSG_NO_WEAPON -> new PlayerComment(Emoji.WARNING, "무기를 올려주세요..!", ColorType.WHITE_TO_RED7);
+            case MSG_NO_SCROLL -> new PlayerComment(Emoji.WARNING, "강화 주문서가 부족해요..", ColorType.WHITE_TO_RED7);
             case MSG_MAX_LEVEL -> new PlayerComment(Emoji.WARNING, "이미 최고 레벨입니다..!", ColorType.WHITE_TO_RED7);
             case MSG_ITEM_DESTROYED -> new PlayerComment(Emoji.SKULL, "강화에 실패하여 무기가 파괴 되었어요...ㅠㅠㅠㅠ", ColorType.WHITE_TO_RED7);
             case MSG_PROTECT_SUCCESS -> new PlayerComment(Emoji.EXPLODING_PARTY, "파괴방어 스크롤을 사용하여 파괴방지에 성공했어요!!", ColorType.DISCORD_COLOR);

@@ -28,23 +28,25 @@ import java.util.List;
 
 public final class EnhanceUtil extends StringComponentExchanger {
 
+    public static int MAX_LEVEL = 10;
+    public static int LOW_LEVEL = 0;
+
     /*
-     * 0 -> 1강  100% 0%
-     * 1 -> 2강  90%  10%
-     * 2 -> 3강  80%  20%
-     * 3 -> 4강  70%  30%
-     * 4 -> 5강  60%  40%
-     * 5 -> 6강  50%  50%
-     * 6 -> 7강  40%  60%
-     * 7 -> 8강  30%  70%
-     * 7 -> 8강  20%  80%
-     * 9 -> 10강 10%  90%
+     * 강화 성공 확률
+     * 0 -> 1강: 100%
+     * 1 -> 2강: 90%
+     * 2 -> 3강: 80%
+     * 3 -> 4강: 70%
+     * 4 -> 5강: 60%
+     * 5 -> 6강: 50%
+     * 6 -> 7강: 40%
+     * 7 -> 8강: 30%
+     * 8 -> 9강: 20%
+     * 9 -> 10강: 10%
      */
-    public static boolean isMeetsJudgementCriteria(int standardValue) {
-        int ranNum = Integer.parseInt(String.format("%1.0f", Math.random() * 10)); //0.0 ~ 1.0
-//        System.out.println("ranNum > " + ranNum);
-//        System.out.println("standardValue > " + standardValue);
-        return ranNum <= standardValue;
+    public static boolean isMeetsJudgementCriteria(int currentLevel) {
+        int ranNum = (int) (Math.random() * 10) + 1; // 1 ~ 10
+        return ranNum > currentLevel;
     }
 
     /*
@@ -101,7 +103,7 @@ public final class EnhanceUtil extends StringComponentExchanger {
         itemMeta.setCustomModelData(itemMeta.getCustomModelData() + increaseLevel);
 
 //        최종강화 아이템 설정
-        if (itemMeta.getCustomModelData() == 10) {
+        if (itemMeta.getCustomModelData() == MAX_LEVEL) {
             itemMeta.setUnbreakable(true);
             itemMeta.setFireResistant(true);
             itemMeta.setRarity(ItemRarity.EPIC);
@@ -155,7 +157,7 @@ public final class EnhanceUtil extends StringComponentExchanger {
         itemMeta.setCustomModelData(itemMeta.getCustomModelData() + increaseLevel);
 
 //        최종강화 아이템 설정
-        if (itemMeta.getCustomModelData() == 10) {
+        if (itemMeta.getCustomModelData() == MAX_LEVEL) {
             itemMeta.setUnbreakable(true);
             itemMeta.setFireResistant(true);
             itemMeta.setRarity(ItemRarity.EPIC);
