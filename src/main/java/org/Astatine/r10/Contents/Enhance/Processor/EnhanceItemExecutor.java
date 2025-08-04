@@ -98,17 +98,18 @@ public class EnhanceItemExecutor extends StringComponentExchanger {
             return false;
         }
 
-        if (!allowedItems.contains(item.enhanceItem().getType())) {
+        if (BooleanUtils.isFalse(allowedItems.contains(item.enhanceItem().getType()))) {
             sendMessage(MSG_INVALID_ITEM);
             return false;
         }
 
-        if (!allowedScrolls.contains(item.enhanceScroll().getType())) {
+        if (BooleanUtils.isFalse(allowedScrolls.contains(item.enhanceScroll().getType()))) {
             sendMessage(MSG_INVALID_SCROLL);
             return false;
         }
 
-        if (hasProtectScroll && !allowedScrolls.contains(item.protectScroll().getType())) {
+        if (hasProtectScroll
+                && BooleanUtils.isFalse(allowedScrolls.contains(item.protectScroll().getType()))) {
             sendMessage(MSG_INVALID_PROTECT_SCROLL);
             return false;
         }
@@ -140,12 +141,13 @@ public class EnhanceItemExecutor extends StringComponentExchanger {
     }
 
     private boolean areScrollsSufficient() {
-        if (!isScrollSufficient) {
+        if (BooleanUtils.isFalse(isScrollSufficient)) {
             sendMessage(MSG_SCROLL_INSUFFICIENT);
             return false;
         }
 
-        if (hasProtectScroll && !isProtectScrollSufficient) {
+        if (hasProtectScroll
+                && BooleanUtils.isFalse(isProtectScrollSufficient)) {
             sendMessage(MSG_PROTECT_INSUFFICIENT);
             return false;
         }
@@ -160,9 +162,9 @@ public class EnhanceItemExecutor extends StringComponentExchanger {
 
         if (isSuccessful) {
             handleSuccess();
-        } else if (!willDestroy) {
+        } else if (BooleanUtils.isFalse(willDestroy)) {
             handleFailure();
-        } else if (!hasProtectScroll) {
+        } else if (BooleanUtils.isFalse(hasProtectScroll)) {
             handleDestruction();
         } else {
             handleProtectedFailure();
