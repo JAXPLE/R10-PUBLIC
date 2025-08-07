@@ -45,7 +45,9 @@ public final class EnhanceUtil extends StringComponentExchanger {
      * 9 -> 10강: 10%
      */
     public static boolean isMeetsJudgementCriteria(int currentLevel) {
-        int ranNum = (int) (Math.random() * 10) + 1; // 1 ~ 10
+        int ranNum = Integer.parseInt(String.format("%1.0f", Math.random() * 10)); // 1 ~ 10
+    //    System.out.println("ranNum > " + ranNum);
+    //    System.out.println("currentLevel > " + currentLevel);
         return ranNum > currentLevel;
     }
 

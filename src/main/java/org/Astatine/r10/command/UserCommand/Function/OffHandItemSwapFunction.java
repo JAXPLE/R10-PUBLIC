@@ -22,8 +22,8 @@ public class OffHandItemSwapFunction extends CommandRegister {
 
         Player player = (Player) commandSender;
 
-        ItemStack mainHandItem = player.getInventory().getItemInMainHand();
-        ItemStack offHandItem = player.getInventory().getItemInOffHand();
+        ItemStack mainHandItem = player.getInventory().getItemInMainHand().asOne();
+        ItemStack offHandItem = player.getInventory().getItemInOffHand().asOne();
 
         player.getInventory().setItemInMainHand(offHandItem);
         player.getInventory().setItemInOffHand(mainHandItem);

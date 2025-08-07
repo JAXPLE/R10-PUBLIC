@@ -28,7 +28,7 @@ public class Hat extends CommandRegister {
         this.player = (Player) sender;
         this.playerInventory = this.player.getInventory();
 
-        ItemStack tmpItemInHand = this.playerInventory.getItemInMainHand();
+        ItemStack tmpItemInHand = this.playerInventory.getItemInMainHand().asOne();
         if (tmpItemInHand.isEmpty()) {
             player.sendMessage(
                 waringMessage("손에 아이템을 들어야 머리에 올릴 수 있어요!")

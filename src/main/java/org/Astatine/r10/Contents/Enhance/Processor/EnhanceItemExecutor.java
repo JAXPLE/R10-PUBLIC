@@ -157,8 +157,10 @@ public class EnhanceItemExecutor extends StringComponentExchanger {
 
     private void processEnhancement() {
         int currentLevel = getCurrentEnhanceLevel();
-        boolean isSuccessful = EnhanceUtil.isMeetsJudgementCriteria(EnhanceUtil.MAX_LEVEL - currentLevel);
-        boolean willDestroy = EnhanceUtil.isMeetsJudgementCriteria(currentLevel);
+        boolean isSuccessful = EnhanceUtil.isMeetsJudgementCriteria(currentLevel);
+        
+        int currentDestroyLevel = EnhanceUtil.MAX_LEVEL - getCurrentEnhanceLevel();
+        boolean willDestroy = EnhanceUtil.isMeetsJudgementCriteria(currentDestroyLevel);
 
         if (isSuccessful) {
             handleSuccess();
