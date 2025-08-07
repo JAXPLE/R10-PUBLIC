@@ -58,7 +58,7 @@ public class SetEnhance extends CommandRegister {
         }
 
         try {
-            EnhanceUtil.increaseEnhanceItemLevel(player, targetItem, enhanceLevel);
+            EnhanceUtil.increaseEnhanceItemLevel(targetItem, enhanceLevel);
         } catch (Exception e) {
             e.printStackTrace();
         }

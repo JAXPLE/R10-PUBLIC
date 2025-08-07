@@ -92,61 +92,14 @@ public final class EnhanceUtil extends StringComponentExchanger {
     }
 
     public static void increaseEnhanceItemLevel(Player enhancePlayer, ItemStack item, int increaseLevel) throws EnhanceItemMetaException {
-        List<Component> lore = new ArrayList<>();
-        try {
-            validCustomModelData(item, "addItemDescription");
-        } catch (Exception e) {
-            e.printStackTrace();
+        increaseEnhanceItemLevel(item, increaseLevel);
+        
+        if (isMaxLevel(item)) {
+            broadcastMaxLevelAchievement(enhancePlayer, item);
         }
-
-        ItemMeta itemMeta = item.getItemMeta();
-        itemMeta.setCustomModelData(itemMeta.getCustomModelData() + increaseLevel);
-
-//        최종강화 아이템 설정
-        if (itemMeta.getCustomModelData() == MAX_LEVEL) {
-            itemMeta.setUnbreakable(true);
-            itemMeta.setFireResistant(true);
-            itemMeta.setRarity(ItemRarity.EPIC);
-
-            ((Damageable) itemMeta).resetDamage();
-
-            Bukkit.broadcast(
-                Component.text()
-                    .append(Emoji.FIRE.getComponentTypeEmoji()
-                        .color(ColorType.WHITE.getTextColor())
-                    )
-                    .append(
-                        Component.text(
-                            String.format("%s 님이 \"%s\" 10강 강화에 성공하셨습니다!",
-                                enhancePlayer.getName(), item.getType()
-                            )
-                        )
-                        .color(ColorType.YELLOW.getTextColor())
-                    )
-                    .decorate(TextDecoration.BOLD)
-                    .build()
-            );
-        }
-
-        item.setItemMeta(itemMeta);
-
-//        정상적인 형태의 강화작업
-        if (itemMeta.getCustomModelData() > 0) { // 0 == Remove All Item Lore /enhance 0
-            lore.add(getEnhanceStatusLore(item));
-
-            ArmourList armourList = ArmourList.findByItemStack(item);
-            if (armourList.getMaterial().equals(Material.AIR))
-                lore.add(getWeaponDamageLore(item));
-            else
-                lore.add(getEnhanceDecreaseDamagePercentageLore(item));
-            item.lore(lore);
-        }
-
-//        todo CustomModelData 가 0 일 시 아이템 초기화 작업 로직
     }
 
     public static void increaseEnhanceItemLevel(ItemStack item, int increaseLevel) throws EnhanceItemMetaException {
-        List<Component> lore = new ArrayList<>();
         try {
             validCustomModelData(item, "addItemDescription");
         } catch (Exception e) {
@@ -155,30 +108,51 @@ public final class EnhanceUtil extends StringComponentExchanger {
 
         ItemMeta itemMeta = item.getItemMeta();
         itemMeta.setCustomModelData(itemMeta.getCustomModelData() + increaseLevel);
-
-//        최종강화 아이템 설정
-        if (itemMeta.getCustomModelData() == MAX_LEVEL) {
-            itemMeta.setUnbreakable(true);
-            itemMeta.setFireResistant(true);
-            itemMeta.setRarity(ItemRarity.EPIC);
-
-            ((Damageable) itemMeta).resetDamage();
+        
+        if (isMaxLevel(item)) {
+            applyMaxLevelSettings(itemMeta);
         }
+        
         item.setItemMeta(itemMeta);
-
-//        정상적인 형태의 강화작업
-        if (itemMeta.getCustomModelData() > 0) { // 0 == Remove All Item Lore /enhance 0
+        
+        if (itemMeta.getCustomModelData() > 0) {
+            List<Component> lore = new ArrayList<>();
             lore.add(getEnhanceStatusLore(item));
-
+            
             ArmourList armourList = ArmourList.findByItemStack(item);
-            if (armourList.getMaterial().equals(Material.AIR))
+            if (armourList.getMaterial().equals(Material.AIR)) {
                 lore.add(getWeaponDamageLore(item));
-            else
+            } else {
                 lore.add(getEnhanceDecreaseDamagePercentageLore(item));
+            }
+            
             item.lore(lore);
         }
+    }
 
-//        todo CustomModelData 가 0 일 시 아이템 초기화 작업 로직
+    private static boolean isMaxLevel(ItemStack item) {
+        return item.getItemMeta().getCustomModelData() == MAX_LEVEL;
+    }
+
+    private static void applyMaxLevelSettings(ItemMeta itemMeta) {
+        itemMeta.setUnbreakable(true);
+        itemMeta.setFireResistant(true);
+        itemMeta.setRarity(ItemRarity.EPIC);
+        ((Damageable) itemMeta).resetDamage();
+    }
+
+    private static void broadcastMaxLevelAchievement(Player player, ItemStack item) {
+        Bukkit.broadcast(
+            Component.text()
+                .append(Emoji.FIRE.getComponentTypeEmoji()
+                    .color(ColorType.WHITE.getTextColor()))
+                .append(Component.text(
+                    String.format("%s 님이 \"%s\" 10강 강화에 성공하셨습니다!",
+                        player.getName(), item.getType())
+                ).color(ColorType.YELLOW.getTextColor()))
+                .decorate(TextDecoration.BOLD)
+                .build()
+        );
     }
 
     public static Component getEnhanceStatusLore(ItemStack item) {
